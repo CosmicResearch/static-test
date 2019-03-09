@@ -15,7 +15,7 @@ In order to build this software you will need the following software installed i
 
 * CMake 3.1+
 * Any working C++ and C compilers for your target system (supporting at least C++14)
-* g3log
+* g3log (https://github.com/CosmicResearch/g3log)
 
 ## Build instructions
 
