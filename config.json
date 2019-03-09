@@ -1,0 +1,73 @@
+{
+    "log_dir": "./log",
+    "thermocoupler_1": {
+        "event": "read_thermocoupler",
+        "name": "thermocoupler_1",
+        "file": "/sys/bus/iio/devices/iio:device0/in_voltage6_raw",
+        "sampling_rate": 10000000,
+        "zero": 1.25,
+        "span": 2.05,
+        "scale": 410.0,
+        "adc": {
+            "quantization_bits": 12,
+            "low_voltage": 0.0,
+            "span_voltage": 3.3
+        }
+    },
+    "thermocoupler_2": {
+        "event": "read_thermocoupler",
+        "name": "thermocoupler_2",
+        "file": "/sys/bus/iio/devices/iio:device0/in_voltage7_raw",
+        "sampling_rate": 10000000,
+        "zero": 1.25,
+        "span": 2.05,
+        "scale": 410.0,
+        "adc": {
+            "quantization_bits": 12,
+            "low_voltage": 0.0,
+            "span_voltage": 3.3
+        }
+    },
+    "thermocoupler_3": {
+        "event": "read_thermocoupler",
+        "name": "thermocoupler_3",
+        "file": "/sys/bus/iio/devices/iio:device0/in_voltage8_raw",
+        "sampling_rate": 10000000,
+        "zero": 1.25,
+        "span": 2.05,
+        "scale": 410.0,
+        "adc": {
+            "quantization_bits": 12,
+            "low_voltage": 0.0,
+            "span_voltage": 3.3
+        }
+    },
+    "load_cell": {
+        "event": "read_load_cell",
+        "name": "load_cell",
+        "file": "/sys/bus/iio/devices/iio:device0/in_voltage4_raw",
+        "sampling_rate": 10000000,
+        "zero": 0.5,
+        "span": 2.8,
+        "scale": 1556.877567,
+        "adc": {
+            "quantization_bits": 12,
+            "low_voltage": 0.0,
+            "span_voltage": 3.3
+        }
+    },
+    "pressure": {
+        "event": "read_pressure",
+        "name": "pressure",
+        "file": "/sys/bus/iio/devices/iio:device0/in_voltage5_raw",
+        "sampling_rate": 10000000,
+        "zero": 0.3606,
+        "span": 2.8844,
+        "scale": 100.0,
+        "adc": {
+            "quantization_bits": 12,
+            "low_voltage": 0.0,
+            "span_voltage": 3.3
+        }
+    }
+}

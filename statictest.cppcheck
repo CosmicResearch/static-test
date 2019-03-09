@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="1">
+    <builddir>statictest-cppcheck-build-dir</builddir>
+    <platform>unix64</platform>
+    <analyze-all-vs-configs>true</analyze-all-vs-configs>
+    <includedir>
+        <dir name="include/"/>
+        <dir name="lib/"/>
+        <dir name="src/"/>
+    </includedir>
+    <defines>
+        <define name="THREADS=10"/>
+    </defines>
+    <paths>
+        <dir name="src"/>
+        <dir name="src/listeners"/>
+        <dir name="src/datasources"/>
+    </paths>
+    <addons>
+        <addon>threadsafety</addon>
+    </addons>
+</project>
