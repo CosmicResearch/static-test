@@ -92,6 +92,6 @@ void Application::run() {
  */
 void Application::stop() {
     LOG(INFO) << "Stopping application...";
-    //dispatcher.stop();
-    //manager.stop();
+    dispatcher.stop();
+    manager.stop();
 }

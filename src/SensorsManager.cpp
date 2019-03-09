@@ -44,6 +44,10 @@ void SensorsManager::stop() {
         return;
     }
 
+    for (auto& sensor : sensors) {
+        sensor->stop();
+    }
+
     LOG(INFO) << "Stopping SensorsManager";
 
     this->stopped = true;

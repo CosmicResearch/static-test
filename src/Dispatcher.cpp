@@ -50,6 +50,16 @@ void Dispatcher::stop() {
         return;
     }
 
+    for (auto& listeners : this->listeners) {
+        
+        for (auto& listener : listeners.second) {
+
+            listener->stop();
+
+        }
+
+    }
+
     this->stopped = true;
 
     LOG(INFO) << "Stopping Dispatcher execution threads";

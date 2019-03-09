@@ -23,6 +23,7 @@ extern "C" {
 #include "sqlite3.h"
 }
 #include "exceptions.h"
+#include "LogService.h"
 
 class DbListener : public Listener {
 

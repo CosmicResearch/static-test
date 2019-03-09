@@ -38,6 +38,17 @@ void DbListener::open() {
         const char* msg = sqlite3_errmsg(this->db);
         throw new db_exception(msg);
     }
+    char* msg;
+    rc = sqlite3_exec(db, "PRAGMA synchronous = OFF", NULL, NULL, &msg);
+    if (rc != SQLITE_OK) {
+        LOG(WARNING) << msg;
+        sqlite3_free(msg);
+    }
+    rc = sqlite3_exec(db, "PRAGMA journal_mode = MEMORY", NULL, NULL, &msg);
+    if (rc != SQLITE_OK) {
+        LOG(WARNING) << msg;
+        sqlite3_free(msg);
+    }
     started = true;
 }
 
@@ -90,16 +101,38 @@ void DbListener::threadFunc() {
 
     }
 
-    while (!stopped) {
+    int count = 0;
+    int maxCount = 500;
+    int rc;
+    char* msg;
 
-        while (!data.empty()) {
-            auto pair = data.front();
-            insert(pair.second, pair.first);
-            data.pop();
+    while (!stopped) {
+        rc = sqlite3_exec(db, "BEGIN TRANSACTION", NULL, NULL, &msg);
+        if (rc != SQLITE_OK) {
+            LOG(WARNING) << msg;
+            sqlite3_free(msg);
         }
 
-        this_thread::high_precision_sleep_for(100000000); //100ms
+        while (!data.empty() && count < maxCount) {
+            auto pair = data.front();
+            try {
+                insert(pair.second, pair.first);
+            }
+            catch (db_exception& exception) {
+                LOG(WARNING) << exception.what();
+            }
+            data.pop();
+            ++count;
+        }
 
+        rc = sqlite3_exec(db, "END TRANSACTION", NULL, NULL, &msg);
+        if (rc != SQLITE_OK) {
+            LOG(WARNING) << msg;
+            sqlite3_free(msg);
+        }
+
+        count = 0;
+        this_thread::high_precision_sleep_for(100000000); //100ms
     }
 
 }
